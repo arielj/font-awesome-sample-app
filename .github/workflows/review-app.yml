@@ -11,6 +11,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: fastruby/create-heroku-review-app@test4
+      - uses: fastruby/create-heroku-review-app@test5
       - name: Deploy Review App
         run: echo "Deployyyy"
