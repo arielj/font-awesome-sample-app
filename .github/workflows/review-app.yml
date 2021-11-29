@@ -1,0 +1,16 @@
+# .github/workflows/ci.yml
+
+name: CI
+on:
+  pull_request:
+    types: [labeled]
+
+jobs:
+  deploy-review-app:
+    if: ${{ github.event.label.name == 'deploy-review-app' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: fastruby/create-heroku-review-app
+      - name: Deploy Review App
+        run: echo "Deployyyy"
