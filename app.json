@@ -1,0 +1,13 @@
+{
+  "name": "font-awesome webpacker",
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
