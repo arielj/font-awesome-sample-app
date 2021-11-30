@@ -1,19 +1,45 @@
 # .github/workflows/ci.yml
 
-name: CI
+name: Heroku Review App
 on:
   pull_request:
     types: [labeled]
 
 jobs:
-  deploy-review-app:
-    if: ${{ github.event.label.name == 'deploy-review-app' }}
+  create-review-app:
+    if: ${{ github.event.label.name == 'create-review-app' }}
     runs-on: ubuntu-latest
 
     steps:
-      - uses: fastruby/create-heroku-review-app@test11
+      - uses: fastruby/create-heroku-review-app@v1
+        with:
+          action: create
         env:
           HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
           HEROKU_PIPELINE_ID: ${{ secrets.HEROKU_PIPELINE_ID }}
+      - uses: fastruby/pr-unlabeler@main
+        with:
+          label-to-remove: "create-review-app"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy Review App
         run: echo "Deployyyy"
+
+  destroy-review-app:
+    if: ${{ github.event.label.name == 'destroy-review-app' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: fastruby/create-heroku-review-app@v1
+        with:
+          action: destroy
+        env:
+          HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+          HEROKU_PIPELINE_ID: ${{ secrets.HEROKU_PIPELINE_ID }}
+      - uses: fastruby/pr-unlabeler@main
+        with:
+          label-to-remove: "destroy-review-app"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Destroy Review App
+        run: echo "Destroyyyy"
