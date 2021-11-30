@@ -12,5 +12,8 @@ jobs:
 
     steps:
       - uses: fastruby/create-heroku-review-app@test11
+        env:
+          HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
+          HEROKU_PIPELINE_ID: ${{ secrets.HEROKU_PIPELINE_ID }}
       - name: Deploy Review App
         run: echo "Deployyyy"
