@@ -1,0 +1,13 @@
+name: Deploy URL
+on:
+  pull_request:
+    types: [deploy_status]
+
+jobs:
+  deploy-status:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: arielj/comment-new-deploy@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
