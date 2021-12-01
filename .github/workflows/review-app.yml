@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: fastruby/create-heroku-review-app@v1
+      - uses: fastruby/create-heroku-review-app@test
         with:
           action: create
         env:
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: fastruby/create-heroku-review-app@v1
+      - uses: fastruby/create-heroku-review-app@test
         with:
           action: destroy
         env:
