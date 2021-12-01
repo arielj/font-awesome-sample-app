@@ -1,7 +1,7 @@
 name: Deploy URL
 on:
   pull_request:
-    types: [deploy_status]
+    types: [deployment_status]
 
 jobs:
   deploy-status:
